@@ -1,6 +1,7 @@
 import streamlit as st
 #Run Command:
 #streamlit run C:\Users\olive_lxjq7tp\PycharmProjects\MovieReview\UserInterface.py
+#streamlit run UserInterface.py
 
 col1, col2, col3 = st.columns([1, 3, 1])
 searchActor = False
@@ -28,3 +29,5 @@ with col3:
     if st.button("Top Films"):
         print("Redirecting to top films link")
         st.switch_page("pages/TopFilms.py")
+
+        #Test
