@@ -15,6 +15,7 @@ with col2:
 search = st.text_input("Search here!")
 if search:
     st.write(search)
+    st.switch_page("pages/Search.py")
 
 search_toggle = st.radio(
     "Search by:", ("Film Title", "Actor"), horizontal=True
