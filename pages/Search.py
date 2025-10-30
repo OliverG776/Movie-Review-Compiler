@@ -3,14 +3,14 @@ import os
 import csv
 
 col1, col2, col3 = st.columns([1, 3, 1])
-script_dir = os.path.dirname(__file__)
-file_path = os.path.join(script_dir, "movies.csv")
+script_directory = os.path.dirname(__file__)
+file_directory = os.path.join(script_directory, "movies.csv")
 
 
 with col2:
     st.title("Search Results for " + st.session_state['search_key'] + ":")
 
-with open(file_path, newline="", encoding="utf-8") as csvfile:
+with open(file_directory, newline="", encoding="utf-8") as csvfile:
     reader = csv.reader(csvfile)
     next(reader)
     i = 1
