@@ -45,10 +45,10 @@ class PriorityQueue:
             self.heapifyDown(parent)
 
 
-
     # Functions
-    # Insert new rating elements with tuple (rating, move)
-    # position of rating matters currently
+    # Insert new rating elements with tuple (rating, movie)
+    # position of rating element matters
+    # If we want the actors inside we can add to the tuple here
     def insert(self, rating, movie):
         self.heap.append((rating, movie))
         self.heapifyUp(len(self.heap)-1)
@@ -82,6 +82,24 @@ class PriorityQueue:
     def isEmpty(self):
         return len(self.heap) == 0
 
+    # Get the top ten rated movies
+    def getTopTen(self):
+        stack = []
+
+        for i in range(10):
+            popped = self.pop()
+            if popped is None:
+                break
+            stack.append(popped)
+
+        topTen = stack
+
+        for insertBack in stack:
+            self.insert(insertBack[0], insertBack[1])
+
+
+        return topTen
+
 
 # main function will REMOVE later
 if __name__ == "__main__":
@@ -102,4 +120,7 @@ if __name__ == "__main__":
     pq.display()
 
     print(pq.peek())
-        
+
+    topTen = pq.getTopTen()
+    for i in topTen:
+        print(i)
