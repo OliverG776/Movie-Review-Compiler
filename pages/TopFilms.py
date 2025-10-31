@@ -5,6 +5,7 @@ import csv
 
 script_directory = os.path.dirname(__file__)
 file_directory = os.path.join(script_directory, "movies.csv")
+
 col1, col2, col3 = st.columns([1, 3, 1])
 
 with col2:
