@@ -16,9 +16,17 @@ with open(file_directory, newline="", encoding="utf-8") as csvfile:
     reader = csv.reader(csvfile)
     next(reader)
     i = 1
+    title = ""
     for row in reader:
+        # temp = row[1].split("(")
+        # if temp[1][0].isnumeric():
         title = row[1].split("(")
         title[0] = title[0][:-1]
+        # else:
+        #     title = row[1]
+        #     lastParenthesis = title.rfind("(")
+        #     title = title[:lastParenthesis]
+
         if title[0].lower() == st.session_state['search_key'].lower():
             st.write(title[0])
             st.write("Genres: " + row[2])
