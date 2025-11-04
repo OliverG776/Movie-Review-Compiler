@@ -1,5 +1,4 @@
 import streamlit as st
-import UserInterface
 import os
 import csv
 

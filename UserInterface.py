@@ -12,33 +12,34 @@ col1, col2, col3 = st.columns([1, 3, 1])
 if 'search_key' not in st.session_state:
     st.session_state['search_key'] = ""
 
-if 'search_key' not in st.session_state:
+if 'searchGenre' not in st.session_state:
     st.session_state['searchGenre'] = False
 
 #UI Setup
 with col2:
     st.title("Search for Reviews:")
 
-if st.session_state['searchGenre'] == True:
-    print("Testing")
+if st.session_state['searchGenre'] == False:
     search = st.text_input("Search here!")
     if search:
+        print("Test 2")
         #Changes 'search_key' to str(search), then performs search
         st.session_state['search_key'] = str(search)
         #st.write(search)
-        st.switch_page("pages/Search.py")
+        st.switch_page("pages/SearchResults.py")
 else:
     search = st.selectbox(
         "Which genre?",
         ("Email", "Home phone", "Mobile phone"),
     )
 
-#Allows the user to choose what category they want to sort by
+
+# Allows the user to choose what category they want to sort by
 search_toggle = st.radio(
     "Search by:", ("Film Title", "Genre"), horizontal=True
 )
 
-#Switches what user is searching by
+# #Switches what user is searching by
 if search_toggle == "Genre":
     st.session_state['searchGenre'] = False
 else:
