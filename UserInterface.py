@@ -42,9 +42,13 @@ if st.session_state['searchGenre'] == False:
 else:
     search = st.selectbox(
         "Which genre?",
-        ("Action", "Adventure", "Animation", "Children's", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery",
+        ("", "Action", "Adventure", "Animation", "Children's", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery",
          "Romance", "Sci-Fi", "Thriller", "War", "Western", "No genre")
     )
+    if search != "":
+        st.session_state['search_key'] = str(search)
+        st.switch_page("pages/SearchResults.py")
+
 
 
 #Top films page
