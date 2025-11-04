@@ -131,29 +131,47 @@
 
 class PriorityQueue:
     def __init__(self):
-        self.heapArr = []
+        self.heapContainer = [None] * 10
+        self.size = 0
 
-    def parent(self):
+    def getParent(self):
         print("test")
 
-    def leftChild(self):
-        print("left")
+    def getLeftChild(self, index):
+        if 2*index+1 < 0 or 2*index+1 > self.size:
+            return None
+        else:
+            return self.heapContainer[2*index+1]
 
-    def rightChild(self):
-        print("right")
+    def getRightChild(self, index):
+        if 2*index+2 < 0 or 2*index+2 > self.size:
+            return None
+        else:
+            return self.heapContainer[2*index+2]
+
+    def insert(self, title, rating):
+        self.heapContainer[self.size] = (title, rating)
+        self.size += 1
+        self.heapifyUp()
 
 
-    def insert(self):
-        print("test")
+    def heapifyUp(self):
+        return 0
+
+    def heapifyDown(self):
+        return 0
 
     def pop(self):
-        print("test")
+        self.heapContainer[0] = self.heapContainer[self.size]
+        self.size -= 1
+        self.heapifyDown()
 
     def top(self):
-        print("test")
-
-    def size(self):
-        print("test")
+        return self.heapContainer[0]
 
     def getTopTen(self):
-        print("test")
+        topTen = []
+        for i in range(10):
+            topTen.append(self.top())
+            self.pop()
+        return topTen
