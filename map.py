@@ -8,7 +8,15 @@ class Map:
         genres, rating = values
         self.insert(title, genres, rating)
 
-    def __hash__(self, key):
+    def __getitem__(self, key):
+        index = self.search(key)
+        if index == -1:
+            return False
+        else:
+            return self.mapContainer[index]
+
+
+    def hash(self, key):
         pow = 0
         sum = 0
         for i in str(key):
@@ -17,15 +25,15 @@ class Map:
         return sum%len(self.mapContainer)
 
     def probe(self, index):
-        pow = 1;
+        pow = 1
         newIndex = index
         while not(self.mapContainer[newIndex] is None):
             newIndex = (index + pow**2) % len(self.mapContainer)
             pow += 1
-        return newIndex;
+        return newIndex
 
     def insert(self, title, genres, rating):
-        keyHash = self.__hash__(title)
+        keyHash = self.hash(title)
         if self.mapContainer[keyHash] is None:
             self.mapContainer[keyHash] = (title,genres,rating)
             self.buckets += 1
@@ -48,22 +56,14 @@ class Map:
                 self.insert(i[0],i[1], i[2])
         self.load_factor = self.buckets/len(self.mapContainer)
 
-    def __contains__(self, item):
-        return item in self.dataType1
-
-    def getKeys(self):
-        return self.dataType1.keys()
-
-    def getValues(self):
-        return self.dataType1.values()
-
-    def getItems(self):
-        return self.dataType1.items()
 
     def search(self, key):
-
-        return True
-
-    def __getitem__(self, key):
-        self.search(key)
-        return key
+        keyHash = self.hash(key)
+        power  = 0
+        index = keyHash
+        while power<len(self.mapContainer) and not(self.mapContainer[index] is None):
+            if self.mapContainer[index][0]==key:
+                return index
+            power += 1
+            index = (keyHash + power**2) % len(self.mapContainer)
+        return -1
