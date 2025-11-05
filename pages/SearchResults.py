@@ -18,7 +18,10 @@ with col2:
     st.title("Search Results for " + searchedMovie + ":")
 
 # tuple that holds (title, genres, avg rating)
-movieItems = movieMap.__getitem__("Godzilla")
+movieItems = movieMap.__getitem__(searchedMovie)
+
+st.session_state['movieItems'] = movieItems
+
 movieTitle, genreString, avgRating = movieItems 
 if movieItems != -1:
     st.write(movieTitle + " - " + str(round(avgRating,1)))
@@ -27,6 +30,8 @@ if movieItems != -1:
     buttonText = f"{movieTitle} - {round(avgRating,1)}\nGenres: {genreString}"
     if st.button(buttonText):
         print("Clicked a movie, redirect to card")
+        
+        st.switch_page("pages/MovieCard.py")
 
 
 with open(file_directory, newline="", encoding="utf-8") as csvfile:
