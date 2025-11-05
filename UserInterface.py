@@ -1,10 +1,19 @@
 #Imports
 import streamlit as st
+from DataInitialization import initializeData
 
 #Run Command:
 #streamlit run UserInterface.py
 
 #Variables:
+
+movieMap = initializeData()
+#testing the map here
+print(movieMap.__getitem__("Godzilla"))
+# print(movieMap.search("Godzilla"))
+# print(movieMap.getKeys())
+# print(movieMap.getValues())
+
 
 #Defines columns, essentially partitions the page so we can set assets to certain parts of the page
 showSidebarNavigation = False
