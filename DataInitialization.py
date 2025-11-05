@@ -89,7 +89,10 @@ def initializeData():
             # then we dont wanna divide by 0
             movieMap.insert(movieTitle, genreString, avgRating)
 
-            print("Title: " + str(movieTitle) + "\tGenres: " + str(genreString) + "\tAverage Rating: " + str(avgRating))
+            print("Title: " + str(movieTitle))
+            print("Average Rating: " + str(avgRating))
+            print("Genres: " + str(genreString))
+            print()
 
     st.session_state['movieMap'] = movieMap
     return movieMap

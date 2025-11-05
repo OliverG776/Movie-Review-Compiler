@@ -1,5 +1,6 @@
 #Imports
 import streamlit as st
+from DataInitialization import initializeData
 import os
 import csv
 import re
@@ -9,9 +10,24 @@ col1, col2, col3 = st.columns([1, 3, 1])
 script_directory = os.path.dirname(__file__)
 file_directory = os.path.join(script_directory,"movies.csv")
 
+movieMap = initializeData()
+
+searchedMovie = st.session_state['search_key'] 
 
 with col2:
-    st.title("Search Results for " + st.session_state['search_key'] + ":")
+    st.title("Search Results for " + searchedMovie + ":")
+
+# tuple that holds (title, genres, avg rating)
+movieItems = movieMap.__getitem__("Godzilla")
+movieTitle, genreString, avgRating = movieItems 
+if movieItems != -1:
+    st.write(movieTitle + " - " + str(round(avgRating,1)))
+    st.write("Genres: " + genreString)
+    
+    buttonText = f"{movieTitle} - {round(avgRating,1)}\nGenres: {genreString}"
+    if st.button(buttonText):
+        print("Clicked a movie, redirect to card")
+
 
 with open(file_directory, newline="", encoding="utf-8") as csvfile:
     reader = csv.reader(csvfile)

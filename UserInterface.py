@@ -9,6 +9,7 @@ from DataInitialization import initializeData
 
 movieMap = initializeData()
 #testing the map here
+print(movieMap.search("Godzilla"))
 print(movieMap.__getitem__("Godzilla"))
 # print(movieMap.search("Godzilla"))
 # print(movieMap.getKeys())
