@@ -68,3 +68,11 @@ class Map:
             power += 1
             index = (keyHash + power**2) % len(self.mapContainer)
         return -1
+
+
+    def searchByGenre(self, genre):
+        newList = []
+        for i in range(len(self.mapContainer)):
+            if genre in self.mapContainer[i][1]:
+                newList.append(self.mapContainer[i][0])
+        return newList
