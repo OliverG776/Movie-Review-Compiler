@@ -12,6 +12,10 @@ file_directory = os.path.join(script_directory,"movies.csv")
 
 movieMap = initializeData()
 
+if 'search_key' not in st.session_state:
+    st.session_state['search_key'] = ""
+    movieTitle = "No search key found"
+
 searchedMovie = st.session_state['search_key']
 
 if 'releaseYear' not in st.session_state:

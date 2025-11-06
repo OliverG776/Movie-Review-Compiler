@@ -36,4 +36,7 @@ with col3:
         print("Redirecting to home page")
         st.switch_page("UserInterface.py")
 
-
+with col1:
+    if st.button("Back"):
+        print("Redirecting back to search results")
+        st.switch_page("pages/SearchResults.py")
