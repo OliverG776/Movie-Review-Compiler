@@ -17,7 +17,6 @@ print(movieMap.__getitem__("Godzilla"))
 
 
 #Defines columns, essentially partitions the page so we can set assets to certain parts of the page
-showSidebarNavigation = False
 col1, col2, col3 = st.columns([1, 3, 1])
 #Sets user's default search to ""
 if 'search_key' not in st.session_state:
@@ -44,7 +43,6 @@ with col2:
 if st.session_state['searchGenre'] == False:
     search = st.text_input("Search here!")
     if search:
-        print("Test 2")
         #Changes 'search_key' to str(search), then performs search
         st.session_state['search_key'] = str(search)
         #st.write(search)

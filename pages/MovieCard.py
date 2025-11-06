@@ -5,6 +5,8 @@ import csv
 # This page will grab the properties of the selected movie using the movie
 # title as the key and displays the title(year), genres, rating
 
+col1, col2, col3 = st.columns([1, 3, 1])
+
 # if no key then empty search key
 if 'search_key' not in st.session_state:
     st.session_state['search_key'] = ""
@@ -14,7 +16,24 @@ if 'movieItems' not in st.session_state:
     st.session_state['movieItems'] = ""
     print("no movie info")
 
-movieTitle = st.session_state['search_key']
+if 'releaseYear' not in st.session_state:
+    st.session_state['releaseYear'] = ""
+    releaseYear = "No Release Year Here"
 
+movieTitle = st.session_state['search_key']
+movieTitle, genreString, avgRating = st.session_state['movieItems']
+releaseYear = st.session_state['releaseYear']
+
+with col2:
+    st.title(str(movieTitle))
+
+st.write("Genres: " + genreString)
+st.write("Average rating: " + str(round(avgRating,1)) + "/5")
+st.write("Release year: " + str(releaseYear))
+
+with col3:
+    if st.button("Home"):
+        print("Redirecting to home page")
+        st.switch_page("UserInterface.py")
 
 
