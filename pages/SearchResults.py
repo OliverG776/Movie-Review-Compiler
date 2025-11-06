@@ -25,7 +25,7 @@ movieItems = movieMap.__getitem__(searchedMovie)
 
 st.session_state['movieItems'] = movieItems
 
-if movieItems != False:
+if movieItems != False and st.session_state['searchGenre'] == False:
     movieTitle, genreString, avgRating = movieItems
     if movieItems != -1:
         st.write(movieTitle)

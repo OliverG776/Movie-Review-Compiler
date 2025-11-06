@@ -63,6 +63,7 @@ class Map:
         index = keyHash
         while power<len(self.mapContainer) and not(self.mapContainer[index] is None):
             if self.mapContainer[index][0]==key:
+                print(self.mapContainer[index][0])
                 return index
             power += 1
             index = (keyHash + power**2) % len(self.mapContainer)

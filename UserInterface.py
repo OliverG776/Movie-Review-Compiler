@@ -5,9 +5,16 @@ from DataInitialization import initializeData
 #Run Command:
 #streamlit run UserInterface.py
 
-#Variables:
+#Loading screen used while movieMap loads
+temp = st.empty()
+temp.title("Loading...")
 
+#Variables:
 movieMap = initializeData()
+
+#Refreshes screen to get rid of Loading...
+temp.empty()
+
 #testing the map here
 print(movieMap.search("Godzilla"))
 print(movieMap.__getitem__("Godzilla"))
