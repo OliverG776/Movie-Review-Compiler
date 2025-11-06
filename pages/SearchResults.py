@@ -25,7 +25,7 @@ movieItems = movieMap.__getitem__(searchedMovie)
 
 st.session_state['movieItems'] = movieItems
 
-if movieItems != None:
+if movieItems != False:
     movieTitle, genreString, avgRating = movieItems
     if movieItems != -1:
         st.write(movieTitle)
@@ -67,6 +67,8 @@ if movieItems != None:
             #     st.write("Release Year: " + movie_year)
             #     st.write("Genres: " + row[2])
                 #Need to check map here to pull out ratings/potentially switch genres to come from map
+else:
+    st.write("No search results found")
 
     #ISSUE: Film year included as well, we can probably fix it just by identifying when we hit the first (
 
