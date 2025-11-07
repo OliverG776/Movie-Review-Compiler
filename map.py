@@ -5,8 +5,8 @@ class Map:
         self.buckets = 0
 
     def __setitem__(self, title, values):
-        genres, rating = values
-        self.insert(title, genres, rating)
+        genres, rating, year = values
+        self.insert(title, genres, rating, year)
 
     def __getitem__(self, key):
         index = self.search(key)
@@ -31,15 +31,17 @@ class Map:
             newIndex = (index + pow**2) % len(self.mapContainer)
             pow += 1
         return newIndex
-
-    def insert(self, title, genres, rating):
+    
+    # Insertion into map here using tuple:
+    # (movie title, genre list, average rating,
+    def insert(self, title, genres, rating, year):
         keyHash = self.hash(title)
         if self.mapContainer[keyHash] is None:
-            self.mapContainer[keyHash] = (title,genres,rating)
+            self.mapContainer[keyHash] = (title,genres,rating,year)
             self.buckets += 1
         else:
             keyHash = self.probe(keyHash)
-            self.mapContainer[keyHash] = (title,genres,rating)
+            self.mapContainer[keyHash] = (title,genres,rating,year)
             self.buckets+=1
 
         self.load_factor = self.buckets / len(self.mapContainer)
@@ -53,7 +55,7 @@ class Map:
         self.buckets = 0
         for i in oldMap:
             if i:
-                self.insert(i[0],i[1], i[2])
+                self.insert(i[0],i[1],i[2],i[3])
         self.load_factor = self.buckets/len(self.mapContainer)
 
 

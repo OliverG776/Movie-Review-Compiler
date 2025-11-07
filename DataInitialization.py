@@ -20,7 +20,7 @@ def initializeData():
     movies_directory = os.path.join(script_directory,"pages/movies.csv")
     ratings_directory = os.path.join(script_directory,"pages/ratings.csv")
 
-
+    genreCategories = {}
     movieMap = Map()
 
     #Opens the ratings file for the specific film using dictionary
@@ -48,7 +48,6 @@ def initializeData():
 
     # Opens movies file
     with open(movies_directory, newline="", encoding="utf-8") as csvfile:
-
         reader = csv.reader(csvfile)
         next(reader)
         i = 1
@@ -58,13 +57,9 @@ def initializeData():
             #print("Number: " + str(i))
             #print("Film ID: " + str(row[0]))
             i+=1
-            #print(row[0])
-            #print(row[1])
-            #print(row[2])
 
             currentID = row[0]
 
-            # Splitting title up from year, idk if this actually works but it did for my SearchResults
             title = row[1]
             # This seperates title and year properly without cutting into title names sometimes
             match = re.match(r"(.*)\s\((\d{4})\)$",title)
@@ -76,7 +71,11 @@ def initializeData():
             
             # genre string, not put into list
             genreString = row[2] 
-            
+            genreList = genreString.split("|")
+            for genre in genreList:
+                if genre not in genreCategories:
+                    genreCategories[genre] = []
+                genreCategories[genre].append(movieTitle)
 
             # Get ratings average for this movie
             allRatings = ratings.get(currentID, [])
@@ -87,12 +86,12 @@ def initializeData():
 
             # Some films have no reviews for some reason so if the total reviews = 0 
             # then we dont wanna divide by 0
-            movieMap.insert(movieTitle, genreString, avgRating)
-
-            print("Title: " + str(movieTitle))
+            movieMap.insert(movieTitle, genreList, avgRating, movieYear)
+            print("Title: " + str(movieTitle) + " - " + str(movieYear))
             print("Average Rating: " + str(avgRating))
-            print("Genres: " + str(genreString))
+            print("Genres: " + str(genreList))
             print()
 
+    st.session_state['genreCategories'] = genreCategories
     st.session_state['movieMap'] = movieMap
     return movieMap

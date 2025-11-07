@@ -15,9 +15,9 @@ movieMap = initializeData()
 #Refreshes screen to get rid of Loading...
 temp.empty()
 
-#testing the map here
-print(movieMap.search("Godzilla"))
-print(movieMap.__getitem__("Godzilla"))
+# testing the map here
+# print(movieMap.search("Godzilla"))
+# print(movieMap.__getitem__("Godzilla"))
 # print(movieMap.search("Godzilla"))
 # print(movieMap.getKeys())
 # print(movieMap.getValues())
