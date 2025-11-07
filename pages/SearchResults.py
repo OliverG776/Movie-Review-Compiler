@@ -70,7 +70,7 @@ if movieItems != False and st.session_state['searchGenre'] == False:
                 st.session_state['releaseYear'] = movie_year
             #     st.write("Release Year: " + movie_year)
             #     st.write("Genres: " + row[2])
-                #Need to check map here to pull out ratings/potentially switch genres to come from map
+            #Need to check map here to pull out ratings/potentially switch genres to come from map
 else:
     st.write("No search results found")
 

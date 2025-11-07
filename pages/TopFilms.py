@@ -1,9 +1,13 @@
 import streamlit as st
 import os
 import csv
+from PriorityQueue import PriorityQueue
+from DataInitialization import initializeData
 
 script_directory = os.path.dirname(__file__)
 file_directory = os.path.join(script_directory, "movies.csv")
+
+movieMap = initializeData()
 
 col1, col2, col3 = st.columns([1, 3, 1])
 
