@@ -12,7 +12,9 @@ file_directory = os.path.join(script_directory,"movies.csv")
 
 # Initialize Data into movieMap (contains all movies with their information)
 movieMap = initializeData()
-
+genreCategories = st.session_state['genreCategories']
+# print(genreCategories)
+print(genreCategories["Action"])
 
 # check for genreSearchCheck 
 # if true search_key will be genre type
@@ -37,21 +39,25 @@ with col2:
 movieItems = movieMap.__getitem__(searchedMovie)
 
 st.session_state['movieItems'] = movieItems
+if genreSearchCheck == True:
+    print()
+else: 
+    if movieItems != False:
+        movieTitle, genres, avgRating, movieYear = movieItems
+        if movieItems != -1:
+            # Creates the movie button for linking to the movie card
+            buttonText = f"{movieTitle} - {movieYear}"
+            if st.button(buttonText):
+                print("Clicked a movie, redirect to card")
 
-if movieItems != False and st.session_state['searchGenre'] == False:
-    movieTitle, genres, avgRating, movieYear = movieItems
-    if movieItems != -1:
-        # Creates the movie button for linking to the movie card
-        buttonText = f"{movieTitle} - {movieYear}"
-        if st.button(buttonText):
-            print("Clicked a movie, redirect to card")
-
-            st.switch_page("pages/MovieCard.py")
-else:
-    st.write("No search results found")
+                st.switch_page("pages/MovieCard.py")
+    else:
+        st.write("No search results found")
 
 
     #ISSUE: Film year included as well, we can probably fix it just by identifying when we hit the first (
+
+
 
 with col3:
     if st.button("Home"):

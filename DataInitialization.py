@@ -20,7 +20,7 @@ def initializeData():
     movies_directory = os.path.join(script_directory,"pages/movies.csv")
     ratings_directory = os.path.join(script_directory,"pages/ratings.csv")
 
-
+    genreCategories = {}
     movieMap = Map()
 
     #Opens the ratings file for the specific film using dictionary
@@ -48,7 +48,6 @@ def initializeData():
 
     # Opens movies file
     with open(movies_directory, newline="", encoding="utf-8") as csvfile:
-
         reader = csv.reader(csvfile)
         next(reader)
         i = 1
@@ -73,6 +72,10 @@ def initializeData():
             # genre string, not put into list
             genreString = row[2] 
             genreList = genreString.split("|")
+            for genre in genreList:
+                if genre not in genreCategories:
+                    genreCategories[genre] = []
+                genreCategories[genre].append(movieTitle)
 
             # Get ratings average for this movie
             allRatings = ratings.get(currentID, [])
@@ -89,5 +92,6 @@ def initializeData():
             print("Genres: " + str(genreList))
             print()
 
+    st.session_state['genreCategories'] = genreCategories
     st.session_state['movieMap'] = movieMap
     return movieMap
