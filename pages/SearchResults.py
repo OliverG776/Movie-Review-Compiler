@@ -6,7 +6,7 @@ import csv
 import re
 
 #Initializing streamlit variables
-col1, col2, col3 = st.columns([1, 3, 1])
+col1, col2, col3 = st.columns([1, 5, 1])
 script_directory = os.path.dirname(__file__)
 file_directory = os.path.join(script_directory,"movies.csv")
 
@@ -30,12 +30,10 @@ movieItems = movieMap.__getitem__(searchedMovie)
 st.session_state['movieItems'] = movieItems
 
 if movieItems != False and st.session_state['searchGenre'] == False:
-    movieTitle, genreString, avgRating = movieItems
+    movieTitle, genres, avgRating, movieYear = movieItems
     if movieItems != -1:
-        st.write(movieTitle)
-        st.write("Genres: " + genreString)
-
-        buttonText = f"{movieTitle} - Genres: {genreString}"
+        # Creates the movie button for linking to the movie card
+        buttonText = f"{movieTitle} - {movieYear}"
         if st.button(buttonText):
             print("Clicked a movie, redirect to card")
 
