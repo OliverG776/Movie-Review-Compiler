@@ -21,8 +21,8 @@ print(genreCategories["Action"])
 # if true search_key will be genre type
 # else search_key will be title
 genreSearchCheck = st.session_state['searchGenre']
-# print(str(genreSearchCheck))
 
+#Initializing session state variables
 if 'search_key' not in st.session_state:
     st.session_state['search_key'] = ""
     movieTitle = "No search key found"
@@ -32,7 +32,7 @@ searchedMovie = st.session_state['search_key']
 if 'releaseYear' not in st.session_state:
     st.session_state['releaseYear'] = "N/A"
 
-
+#Initializing title for search results page
 with col2:
     if genreSearchCheck == True:
         if searchedMovie == "Children":
@@ -45,13 +45,14 @@ with col2:
     else:
         st.title("Search Results for " + searchedMovie + ":")
 
-    
+
+#Home button implementation
 with col3:
     if st.button("Home"):
         print("Redirecting to home page")
         st.switch_page("UserInterface.py")
 
-
+#Cases for searching by genre and searching by title
 if genreSearchCheck == True:
     cols = st.columns(6)
     print("Search results based on genre")
@@ -77,24 +78,29 @@ else:
     with col2:
         print("Search results based on title")
 
+        #Initialize a list with all titles that contain the user's search
         partialTitles = []
+        #Remove any blank space left at the end of the user's search
         searchedMovie = searchedMovie.rstrip()
 
+        #Iteration through every title in movieMap
         for key in movieMap.mapContainer:
             if key is not None:
                 title, genres, rating, year = key
 
+                #If the user's search is contained in a known title, title is added to list of possible search results
                 if searchedMovie.lower() in title.lower():
                     movieItems = movieMap.__getitem__(title)
                     partialTitles.append(movieItems)
 
-        # tuple that holds (title, genres, avg rating)
-        #movieItems = movieMap.__getitem__(searchedMovie.rstrip())
-        #st.session_state['movieItems'] = movieItems
+
         cols = st.columns(6)
+        #Initialized to give every button a unique key, prevents streamlit errors
         i = 1
+        #Check to make sure there are possible search results
         if partialTitles != []:
             for title in partialTitles:
+                #Pulls information for every title contained in partialTitles and gives it a unique button
                 movieItems = movieMap.__getitem__(title[0])
                 movieTitle, genres, avgRating, movieYear = movieItems
 
@@ -108,10 +114,11 @@ else:
                     print("Clicked a movie, redirect to card")
 
                     st.switch_page("pages/MovieCard.py")
+                #Updates key for next title
                 i+=1
         else:
+            #Case for no movies found
             st.write("No search results found")
 
 
-    #ISSUE: Film year included as well, we can probably fix it just by identifying when we hit the first (
 

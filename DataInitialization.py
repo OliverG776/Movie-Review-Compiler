@@ -4,13 +4,6 @@ import os
 import csv
 import re
 
-#READ:
-
-#This is just for testing, this code is legit super slow bc i just wanna test that I can actually mess w/ the map lmao
-#Kevin if you see this, please make this faster or we will get a fat 0
-# lol got it
-# I split into two different with loops so its not super slow, ratings needs to be first
-# otherwise you cant get average in 2nd loop
 def initializeData():
     
     if 'movieMap' in st.session_state:

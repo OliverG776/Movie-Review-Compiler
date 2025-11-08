@@ -54,7 +54,6 @@ if st.session_state['searchGenre'] == False:
     if search:
         #Changes 'search_key' to str(search), then performs search
         st.session_state['search_key'] = str(search)
-        #st.write(search)
         st.switch_page("pages/SearchResults.py")
 else:
     search = st.selectbox(
@@ -76,5 +75,6 @@ with col3:
         print("Redirecting to top films link")
         st.switch_page("pages/TopFilms.py")
 
+#Prints image to screen (I just wanted to make things look less boring)
 filmReel = Image.open("FilmReel.png")
 st.image(filmReel)

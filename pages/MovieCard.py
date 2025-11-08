@@ -5,10 +5,11 @@ import csv
 # This page will grab the properties of the selected movie using the movie
 # title as the key and displays the title, genres, rating, release year
 
+#Initializing streamlit variables/page info
 st.set_page_config(layout = "centered")
 col1, col2, col3 = st.columns([1, 3, 1])
 
-# if no key then empty search key
+# if no key then session state variable is empty
 if 'search_key' not in st.session_state:
     st.session_state['search_key'] = ""
     movieTitle = "No Movie Card Here"
@@ -21,22 +22,27 @@ if 'releaseYear' not in st.session_state:
     st.session_state['releaseYear'] = ""
     releaseYear = "No Release Year Here"
 
+#Initializing film information
 movieTitle = st.session_state['search_key']
 movieTitle, genres, avgRating, movieYear = st.session_state['movieItems']
 releaseYear = st.session_state['releaseYear']
 
+#Initializing page title
 with col2:
     st.title(str(movieTitle))
 
+#Printing user's film information to the screen
 st.write("Genres: " + ", ".join(genres))
 st.write("Average rating: " + str(round(avgRating,1)) + "/5")
 st.write("Release year: " + str(releaseYear))
 
+#Home button initialization
 with col3:
     if st.button("Home"):
         print("Redirecting to home page")
         st.switch_page("UserInterface.py")
 
+#Back button initialization
 with col1:
     if st.button("Back"):
         print("Redirecting back to search results")
