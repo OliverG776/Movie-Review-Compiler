@@ -52,9 +52,8 @@ with col3:
         st.switch_page("UserInterface.py")
 
 
-cols = st.columns(6)
-
 if genreSearchCheck == True:
+    cols = st.columns(6)
     print("Search results based on genre")
     # Using genre as key get list of all movies with user specified genre tag
     genreResult = genreCategories[searchedMovie]
@@ -75,24 +74,25 @@ if genreSearchCheck == True:
                     st.switch_page("pages/MovieCard.py")
     
 else: 
-    print("Search results based on title")
+    with col2:
+        print("Search results based on title")
 
-    # tuple that holds (title, genres, avg rating)
-    movieItems = movieMap.__getitem__(searchedMovie)
-    st.session_state['movieItems'] = movieItems
+        # tuple that holds (title, genres, avg rating)
+        movieItems = movieMap.__getitem__(searchedMovie)
+        st.session_state['movieItems'] = movieItems
 
-    if movieItems != False:
-        movieTitle, genres, avgRating, movieYear = movieItems
-        if movieItems != -1:
-            st.session_state['releaseYear'] = str(movieYear)
-            # Creates the movie button for linking to the movie card
-            buttonText = f"{movieTitle} - {movieYear}"
-            if st.button(buttonText):
-                print("Clicked a movie, redirect to card")
+        if movieItems != False:
+            movieTitle, genres, avgRating, movieYear = movieItems
+            if movieItems != -1:
+                st.session_state['releaseYear'] = str(movieYear)
+                # Creates the movie button for linking to the movie card
+                buttonText = f"{movieTitle} - {movieYear}"
+                if st.button(buttonText):
+                    print("Clicked a movie, redirect to card")
 
-                st.switch_page("pages/MovieCard.py")
-    else:
-        st.write("No search results found")
+                    st.switch_page("pages/MovieCard.py")
+        else:
+            st.write("No search results found")
 
 
     #ISSUE: Film year included as well, we can probably fix it just by identifying when we hit the first (
