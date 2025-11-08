@@ -33,7 +33,7 @@ class Map:
         return newIndex
     
     # Insertion into map here using tuple:
-    # (movie title, genre list, average rating,
+    # (movie title, genre list, average rating, release year)
     def insert(self, title, genres, rating, year):
         keyHash = self.hash(title)
         if self.mapContainer[keyHash] is None:
