@@ -6,26 +6,6 @@ class PriorityQueue:
         self.heapContainer = [None] * 10
         self.size = 0
 
-
-    #Was Really Redundant Using These, Cleaner Without Them, Kept in Case You Need Them For UI
-    # def getParent(self, index):
-    #     if (int)((index-1)/2) < 0:
-    #         return None
-    #     else:
-    #         return self.heapContainer[(int)((index-1)/2)]
-    #
-    # def getLeftChild(self, index):
-    #     if 2*index+1 >= self.size:
-    #         return None
-    #     else:
-    #         return self.heapContainer[2*index+1]
-    #
-    # def getRightChild(self, index):
-    #     if 2*index+2 >= self.size:
-    #         return None
-    #     else:
-    #         return self.heapContainer[2*index+2]
-
     def resize(self):
         oldContainer = self.heapContainer
         newSize = len(self.heapContainer)*2
