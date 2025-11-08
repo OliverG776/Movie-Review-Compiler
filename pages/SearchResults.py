@@ -77,20 +77,38 @@ else:
     with col2:
         print("Search results based on title")
 
-        # tuple that holds (title, genres, avg rating)
-        movieItems = movieMap.__getitem__(searchedMovie)
-        st.session_state['movieItems'] = movieItems
+        partialTitles = []
+        searchedMovie = searchedMovie.rstrip()
 
-        if movieItems != False:
-            movieTitle, genres, avgRating, movieYear = movieItems
-            if movieItems != -1:
+        for key in movieMap.mapContainer:
+            if key is not None:
+                title, genres, rating, year = key
+
+                if searchedMovie.lower() in title.lower():
+                    movieItems = movieMap.__getitem__(title)
+                    partialTitles.append(movieItems)
+
+        # tuple that holds (title, genres, avg rating)
+        #movieItems = movieMap.__getitem__(searchedMovie.rstrip())
+        #st.session_state['movieItems'] = movieItems
+        cols = st.columns(6)
+        i = 1
+        if partialTitles != []:
+            for title in partialTitles:
+                movieItems = movieMap.__getitem__(title[0])
+                movieTitle, genres, avgRating, movieYear = movieItems
+
                 st.session_state['releaseYear'] = str(movieYear)
+
                 # Creates the movie button for linking to the movie card
                 buttonText = f"{movieTitle} - {movieYear}"
-                if st.button(buttonText):
+                key = i
+                if st.button(buttonText, key = key):
+                    st.session_state['movieItems'] = movieItems
                     print("Clicked a movie, redirect to card")
 
                     st.switch_page("pages/MovieCard.py")
+                i+=1
         else:
             st.write("No search results found")
 
