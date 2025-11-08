@@ -79,9 +79,9 @@ class PriorityQueue:
     def top(self):
         return self.heapContainer[0]
 
-    def getTopTen(self):
-        topTen = []
-        for i in range(10):
-            topTen.append(self.top())
+    def getTopThousand(self):
+        topThousand = []
+        for i in range(1000):
+            topThousand.append(self.top())
             self.pop()
-        return topTen
+        return topThousand

@@ -45,6 +45,7 @@ else:
     if movieItems != False:
         movieTitle, genres, avgRating, movieYear = movieItems
         if movieItems != -1:
+            st.session_state['releaseYear'] = str(movieYear)
             # Creates the movie button for linking to the movie card
             buttonText = f"{movieTitle} - {movieYear}"
             if st.button(buttonText):
