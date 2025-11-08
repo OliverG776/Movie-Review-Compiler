@@ -25,6 +25,7 @@ temp.empty()
 
 
 #Defines columns, essentially partitions the page so we can set assets to certain parts of the page
+st.set_page_config(layout = "centered")
 col1, col2, col3 = st.columns([1, 3, 1])
 #Sets user's default search to ""
 if 'search_key' not in st.session_state:
@@ -59,9 +60,11 @@ else:
     search = st.selectbox(
         "Which genre?",
         ("", "Action", "Adventure", "Animation", "Children's", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "Film-Noir", "Horror", "Musical", "Mystery",
-         "Romance", "Sci-Fi", "Thriller", "War", "Western", "No genre")
+         "Romance", "Sci-Fi", "Thriller", "War", "Western", "Miscellaneous")
     )
     if search != "":
+        if str(search) == "Children's":
+            search = "Children"
         st.session_state['search_key'] = str(search)
         st.switch_page("pages/SearchResults.py")
 

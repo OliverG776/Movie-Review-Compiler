@@ -11,6 +11,7 @@ file_directory = os.path.join(script_directory, "movies.csv")
 movieMap = initializeData()
 topFilms = PriorityQueue()
 
+st.set_page_config(layout = "centered")
 col1, col2, col3 = st.columns([1, 3, 1])
 
 with col2:

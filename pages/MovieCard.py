@@ -5,6 +5,7 @@ import csv
 # This page will grab the properties of the selected movie using the movie
 # title as the key and displays the title, genres, rating, release year
 
+st.set_page_config(layout = "centered")
 col1, col2, col3 = st.columns([1, 3, 1])
 
 # if no key then empty search key
