@@ -3,6 +3,7 @@ import os
 import csv
 from PriorityQueue import PriorityQueue
 from DataInitialization import initializeData
+import re
 
 script_directory = os.path.dirname(__file__)
 file_directory = os.path.join(script_directory, "movies.csv")
@@ -36,5 +37,5 @@ for key in movieMap.mapContainer:
 topThousand = topFilms.getTopThousand()
 
 for film in topThousand:
-    st.write(str(i) + ".  " + str(film))
+    st.write(str(i) + ".  " + str(film[0]) + " - " + str(round(film[1], 2)))
     i += 1
