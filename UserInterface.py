@@ -1,6 +1,7 @@
 #Imports
 import streamlit as st
 from DataInitialization import initializeData
+from PIL import Image
 
 #Run Command:
 #streamlit run UserInterface.py
@@ -71,3 +72,6 @@ with col3:
     if st.button("Top Films"):
         print("Redirecting to top films link")
         st.switch_page("pages/TopFilms.py")
+
+filmReel = Image.open("FilmReel.png")
+st.image(filmReel)
